@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import tkinter as tk
+from tkinter import messagebox
 
 
 def celsius_to_fahrenheit(celsius):
@@ -28,11 +29,17 @@ def kelvin_to_fahrenheit(kelvin):
 
 
 # The main application window
-def convert_temp():
-    temp = float(entry_temp.get())
+def convert_temp(event=None):
+    try:
+        temp = float(entry_temp.get())
+    except ValueError:
+        messagebox.showerror("Invalid input", "Please enter a valid number: Integer/float")
+        return
     from_scale = from_var.get()
     to_scale = to_var.get()
 
+    if from_scale == to_scale:
+        result = temp
     if from_scale == "C" and to_scale == "F":
         result = celsius_to_fahrenheit(temp)
     elif from_scale == "F" and to_scale == "C":
@@ -41,7 +48,7 @@ def convert_temp():
         result = celsius_to_kelvin(temp)
     elif from_scale == "K" and to_scale == "C":
         result = kelvin_to_celsius(temp)
-    elif from_scale == "C" and to_scale == "K":
+    elif from_scale == "F" and to_scale == "K":
         result = fahrenheit_to_kelvin(temp)
 
     result_label.config(text=f"Result: {result} {to_scale}")
@@ -80,5 +87,8 @@ button_convert.pack()
 # Result display
 result_label = tk.Label(root, text="Result:")
 result_label.pack()
+
+# Allows user to press enter key for result
+root.bind('<Return>', convert_temp)
 
 root.mainloop()
