@@ -15,6 +15,18 @@ def celsius_to_kelvin(celsius):
     return celsius + 273.15
 
 
+def kelvin_to_celsius(kelvin):
+    return kelvin - 273.15
+
+
+def fahrenheit_to_kelvin(fahrenheit):
+    return celsius_to_kelvin(fahrenheit_to_celsius(fahrenheit))
+
+
+def kelvin_to_fahrenheit(kelvin):
+    return celsius_to_fahrenheit(kelvin_to_celsius(kelvin))
+
+
 # The main application window
 def convert_temp():
     temp = float(entry_temp.get())
@@ -27,6 +39,10 @@ def convert_temp():
         result = fahrenheit_to_celsius(temp)
     elif from_scale == "C" and to_scale == "K":
         result = celsius_to_kelvin(temp)
+    elif from_scale == "K" and to_scale == "C":
+        result = kelvin_to_celsius(temp)
+    elif from_scale == "C" and to_scale == "K":
+        result = fahrenheit_to_kelvin(temp)
 
     result_label.config(text=f"Result: {result} {to_scale}")
 
