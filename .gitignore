@@ -1,2 +1,3 @@
-#ignore temp directory
+#ignored directories
 temp_conv_env/
+__pycache__/
