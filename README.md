@@ -69,3 +69,5 @@ pycodestyle temp_converter.py
 pycodestyle test_temp_converter.py
 ```
 
+## Authors
+* [Wise D. Duho](https://github.com/Wise-deldu)
